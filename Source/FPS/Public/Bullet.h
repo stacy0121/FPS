@@ -16,11 +16,16 @@ public:
 	ABullet();
 
 protected:
+	virtual void PreInitializeComponents();
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
 	virtual void Tick(float DeltaTime) override;
+
+	// 액터가 가지고 있는 특성 속성을 수정한 후에 호출되는 이벤트 함수 (root <-> Movement)
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 
 	UPROPERTY(VisibleAnywhere, Category=Movement)
 	class UProjectileMovementComponent* movement;
@@ -31,4 +36,7 @@ public:
 	// 외관 컴포넌트
 	UPROPERTY(VisibleAnywhere, Category=Collision)
 	class UStaticMeshComponent* bodyMesh;
+
+	UPROPERTY(EditDefaultsOnly, Category=Speed)
+	float speed = 500;
 };

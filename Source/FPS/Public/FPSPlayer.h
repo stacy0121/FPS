@@ -38,4 +38,7 @@ public:
 	class UPlayerMove* playerMove;
 
 	FPlayerInputDelegate OnInputDelegate;                  // 2. 변수 선언
+	
+	UPROPERTY(VisibleAnywhere, Category = PlayerFire)
+	class UPlayerFire* playerFire;
 };

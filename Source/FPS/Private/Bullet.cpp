@@ -32,12 +32,19 @@ ABullet::ABullet()
 	// 튕길지 여부
 	movement->bShouldBounce=true;
 	movement->Bounciness=0.3f;                     // 1이 완전 탄성
+
+}
+
+void ABullet::PreInitializeComponents()
+{
+	Super::PreInitializeComponents();
 }
 
 void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	SetLifeSpan(3);
 }
 
 // Called every frame
@@ -45,5 +52,16 @@ void ABullet::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+// 수정된 속성의 정보가 파라미터로 들어온다
+void ABullet::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+{
+	// speed 값이 수정되었는지 확인
+	if (PropertyChangedEvent.GetPropertyName() == TEXT("speed")) {
+		// 속도
+		movement->MaxSpeed = speed;
+		movement->InitialSpeed = speed;
+	}
 }
 
