@@ -16,7 +16,10 @@ public:
 	ABullet();
 
 protected:
-	virtual void PreInitializeComponents();
+	// virtual void PreInitializeComponents();  // 초기화되기 전 호출
+
+	// 액터가 가지고 있는 특성 속성을 수정한 후에 호출되는 이벤트 함수 (root <-> Movement)
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -24,8 +27,7 @@ protected:
 public:	
 	virtual void Tick(float DeltaTime) override;
 
-	// 액터가 가지고 있는 특성 속성을 수정한 후에 호출되는 이벤트 함수 (root <-> Movement)
-	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+	
 
 	UPROPERTY(VisibleAnywhere, Category=Movement)
 	class UProjectileMovementComponent* movement;

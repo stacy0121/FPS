@@ -26,18 +26,12 @@ ABullet::ABullet()
 
 	// 발사체 컴포넌트
 	movement=CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Movement"));
-	// movement 가 적용될 컴포넌트 지정
+	// movement 가 적용될 컴포넌트 지정 - 부모자식 모두 적용됨
 	movement->SetUpdatedComponent(collision);
 	// movement 컴포넌트의 초기값 설정
-	// 튕길지 여부
-	movement->bShouldBounce=true;
-	movement->Bounciness=0.3f;                     // 1이 완전 탄성
+	movement->bShouldBounce=true;  // 튕길지 여부
+	movement->Bounciness=0.3f;  // 1이 완전 탄성
 
-}
-
-void ABullet::PreInitializeComponents()
-{
-	Super::PreInitializeComponents();
 }
 
 void ABullet::BeginPlay()

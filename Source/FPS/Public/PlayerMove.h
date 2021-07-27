@@ -21,13 +21,17 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	virtual void InitializeComponent() override;
+	virtual void InitializeComponent() override;                  // setup 함수보다 먼저 호출되는 life cycle 함수
 
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
+
+	// 필요 속성:소유 액터
+	UPROPERTY()
+	class AFPSPlayer* me;
 
 	//이동
 	void Horizontal(float value);
@@ -37,8 +41,4 @@ public:
 	void LookUp(float value);
 	//점프
 	void Jump();
-
-	// 필요 속성:소유 액터
-	UPROPERTY()
-	class AFPSPlayer* me;
 };

@@ -6,7 +6,7 @@
 #include "GameFramework/Character.h"
 #include "FPSPlayer.generated.h"
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FPlayerInputDelegate, class UInputComponent*);                       // 1번, Ctrl+F12 매크로 정의된 파일
+DECLARE_MULTICAST_DELEGATE_OneParam(FPlayerInputDelegate, class UInputComponent*);                // delegate type 설정, parameter type                       // 1번, Ctrl+F12 매크로 정의된 파일
 
 UCLASS()
 class FPS_API AFPSPlayer : public ACharacter
@@ -37,6 +37,7 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = PlayerMove)
 	class UPlayerMove* playerMove;
 
+	// 사용자 입력 처리를 담당할 Delegate - 위에서 설정한 자료형 사용
 	FPlayerInputDelegate OnInputDelegate;                  // 2. 변수 선언
 	
 	UPROPERTY(VisibleAnywhere, Category = PlayerFire)

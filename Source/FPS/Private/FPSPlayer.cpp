@@ -59,11 +59,12 @@ void AFPSPlayer::Tick(float DeltaTime)
 }
 
 // Called to bind functionality to input
-void AFPSPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AFPSPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)                     // BeginPlay 보다 먼저 호출
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-//	playerMove->SetupPlayerInputComponent(PlayerInputComponent);
-
+//	playerMove->SetupPlayerInputComponent(PlayerInputComponent);     함수를 있는대로 다 써주기보다는
+	
+	// 등록(add)된 Delegate 함수 모조리 실행해주기
 	OnInputDelegate.Broadcast(PlayerInputComponent);
 
 }
